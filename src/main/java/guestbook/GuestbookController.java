@@ -20,6 +20,7 @@ import io.github.wimdeblauwe.hsbt.mvc.HxRequest;
 import jakarta.validation.Valid;
 
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -32,7 +33,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
+import java.util.Arrays;  
 
 /**
  * A controller to handle web requests to manage {@link GuestbookEntry}s
@@ -104,6 +109,28 @@ class GuestbookController {
 
 		guestbook.save(form.toNewEntry());
 
+		return "redirect:/guestbook";
+	}
+
+	@PostMapping(path = "/guestbook/evaluate")
+	String likeEntry(@RequestParam(value = "action") String valueAndName) {
+		/* split the string in value and name */
+		
+
+		List<String> ListValueAndName = Arrays.asList(valueAndName.split(Pattern.quote(".")));
+		String name = ListValueAndName.get(1); 
+		String value = ListValueAndName.get(0); 
+
+		GuestbookEntry user = this.guestbook.findByNameOrderById(name).get(0);
+
+		if (value.equals("like")) {
+			user.increaseLikes();
+		} else {
+			user.increaseDisLikes();
+		}
+
+		this.guestbook.save(user); 
+		
 		return "redirect:/guestbook";
 	}
 

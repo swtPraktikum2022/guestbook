@@ -37,6 +37,17 @@
 					</div>
 					<div class="card-footer">
 						<footer class="date" th:text="${#temporals.format(entry.date, 'dd. MMMM yyyy - HH:mm')}">Datum</footer>
+
+						<div id="likeSection">
+							<form method="post" role="form" id="evaluateForm" th:action="@{/guestbook/evaluate}" th:object="${form}" >
+								<!-- like button -->
+								<button type="submit" name="action" class="evaluateButton" th:value="'like.' + ${entry.name}" >like</button>
+								<!-- dislike button -->
+								<button type="submit" name="action" class="evaluateButton" th:value="'dislike.' + ${entry.name}" >dislike</button>
+							</form>
+						<div id="likeCount"  th:text="'likes: ' + ${entry.likes} + ' dislikes: ' + ${entry.dislikes}"></div>
+						</div>
+
 					</div>
 				</div>
 			</div>

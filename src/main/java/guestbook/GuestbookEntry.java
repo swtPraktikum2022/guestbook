@@ -37,6 +37,10 @@ class GuestbookEntry {
 	private final String name, text;
 	private final LocalDateTime date;
 
+	private int likes;
+	private int dislikes;
+
+
 	/**
 	 * Creates a new {@link GuestbookEntry} for the given name and text.
 	 *
@@ -51,6 +55,9 @@ class GuestbookEntry {
 		this.name = name;
 		this.text = text;
 		this.date = LocalDateTime.now();
+
+		this.likes = 0;
+		this.dislikes = 0;
 	}
 
 	@SuppressWarnings("unused")
@@ -58,6 +65,14 @@ class GuestbookEntry {
 		this.name = null;
 		this.text = null;
 		this.date = null;
+	}
+
+	public void increaseLikes() {
+		this.likes++;
+	}
+
+	public void increaseDisLikes() {
+		this.dislikes++;
 	}
 
 	public String getName() {
@@ -75,4 +90,8 @@ class GuestbookEntry {
 	public String getText() {
 		return text;
 	}
+
+	public int getLikes() {return this.likes; }
+
+	public int getDislikes() {return this.dislikes; }
 }

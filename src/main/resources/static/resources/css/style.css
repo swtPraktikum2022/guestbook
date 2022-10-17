@@ -22,3 +22,16 @@ blockquote {
 form#form {
 	padding: 0 1.25em;
 }
+
+#likeCount {
+    float: right;
+    padding-left: 30em;
+}
+
+#evaluateForm {
+	display: inline; 
+}
+
+#likeSection {
+	margin-top: 1%;
+}
