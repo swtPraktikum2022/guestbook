@@ -34,6 +34,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -112,9 +113,15 @@ class GuestbookController {
 		return "redirect:/guestbook";
 	}
 
+	/**
+	 * method to handle like / dislike without AJAX request 
+	 * @param valueAndName if the post was like or disliked and the name of the author of the post
+	 * @return htmx response 
+	 
+	//@HxRequest
 	@PostMapping(path = "/guestbook/evaluate")
 	String likeEntry(@RequestParam(value = "action") String valueAndName) {
-		/* split the string in value and name */
+		// split the string in value and name 
 		
 
 		List<String> ListValueAndName = Arrays.asList(valueAndName.split(Pattern.quote(".")));
@@ -133,6 +140,33 @@ class GuestbookController {
 		
 		return "redirect:/guestbook";
 	}
+	*/
+	@HxRequest
+	@ResponseBody
+	@PostMapping(path = "/guestbook/evaluate")
+	String likeEntry(@RequestParam(value = "action") String valueAndName) {
+		/* split the string in value and name */
+		
+
+		List<String> ListValueAndName = Arrays.asList(valueAndName.split(Pattern.quote(".")));
+		String name = ListValueAndName.get(1); 
+		String value = ListValueAndName.get(0); 
+		String returnString; 
+
+		GuestbookEntry user = this.guestbook.findByNameOrderById(name).get(0);
+
+		if (value.equals("like")) {
+			user.increaseLikes();		
+		} else {
+			user.increaseDisLikes();
+		}
+
+		this.guestbook.save(user); 
+		
+		returnString = "likes: " +  Integer.toString(user.getLikes()) + " / dislikes: " + Integer.toString(user.getDislikes());
+		return returnString;
+	}
+
 
 	/**
 	 * Deletes a {@link GuestbookEntry}. This request can only be performed by authenticated users with admin privileges.
