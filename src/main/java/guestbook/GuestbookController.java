@@ -88,7 +88,7 @@ class GuestbookController {
 		model.addAttribute("entries", guestbook.findAll());
 		model.addAttribute("form", form);
 
-		return "guestbook";
+		return "addAndEditLectures";
 	}
 
 	/**

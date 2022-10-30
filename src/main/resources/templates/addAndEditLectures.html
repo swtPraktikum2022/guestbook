@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" th:href="@{/resources/css/addAndEditLectures.css}">
+		<title th:text="#{welcome.title}">Lectures</title>
+	</head>
+
+    <!-- back to controllsite button -->
+    <button id="backToControllButton" th:text="#{employee.backButton}">Back to control</button>
+
+	<!-- information input field -->
+	<form id="eventInformationForm">
+		<table id="eventInformationTable">
+			<tr>
+				<td>
+					<label for="nameField" th:text="#{eventInformationForm.nameInput}">name:</label>
+					<input type="text" name="nameField" id="nameField">
+				</td>
+				<td>
+					<label for="roomField" th:text="#{eventInformationForm.roomInput}">room:</label> 
+					<select name="roomField" id="roomField">
+						<!-- options have to be filled dynamiclly with all avaiable rooms -->
+						<option value="room1" >room1</option>
+					</select>
+				</td>
+				<td>
+					<label for="imageField" th:text="#{eventInformationForm.imageInput}">image:</label>
+					<input type="file" name="imageField" id="imageField" accept="image/*">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="readerField" th:text="#{eventInformationForm.readerInput}">reader:</label>
+					<input type="text" name="readerField" id="readerField">
+				</td>
+				<td>
+					<label for="dateField" th:text="#{eventInformationForm.dateInput}">date:</label>
+					<input type="date" name="dateField" id="dateField" value="2022-01-01">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for=""
+				</td>
+			</tr>
+		</table>
+	</form>
+</html>
