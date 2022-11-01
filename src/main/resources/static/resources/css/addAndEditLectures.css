@@ -53,6 +53,28 @@
 	padding-bottom: 2vh;
 }
 
+#eventImage {
+	width: 10vw;
+	height: 20vh;
+
+	margin-left: 3vw;
+}
+
+#editEventButton {
+	margin-top: 3vh;
+}
+
+#guestOfEventTable {
+	width: 60vw;
+	margin: auto;
+	margin-top: 8vh;
+	border-collapse: collapse;
+}
+
+#guestOfEventTable th {
+	border: solid;
+}
+
 /* CLASSES */
 .eventHeadline {
 	padding-left: 1vw; 

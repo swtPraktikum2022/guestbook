@@ -14,14 +14,66 @@
     <button id="backToControllButton" th:text="#{employee.backButton}">Back to control</button>
 
     <div id="editWrapper">
-        <form id="editEventInformationForm">
-            <table id="editEventInformationTable">
+        <table id="eventInformationTable">
+                <form id="eventInformationForm">
                 <tr>
                     <td>
                         <label for="nameField" th:text="#{eventInformation.name} + ':'">name:</label>
                         <input type="text" name="nameField" id="nameField">
                     </td>
+                    <td>
+                        <label for="roomField" th:text="#{eventInformation.room} + ':'">room:</label> 
+                        <select name="roomField" id="roomField">
+                            <!-- options have to be filled dynamically with all avaiable rooms -->
+                            <option value="room1" >room1</option>
+                        </select>
+                    </td>
+                    <td rowspan="2">
+                        <img id="eventImage">
+                    </td>
                 </tr>
-            </table>
-        </form>
+                <tr>
+                    <td>
+                        <label for="readerField" th:text="#{eventInformation.reader} + ':'">reader:</label>
+                        <input type="text" name="readerField" id="readerField">
+                    </td>
+                    <td>
+                        <label for="dateField" th:text="#{eventInformation.date} + ':'">date:</label>
+                        <input type="date" name="dateField" id="dateField" value="2022-01-01">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="genreField" th:text="#{eventInformation.genre} + ':'">genre:</label>
+                        <select name="genreField" id="genreField">
+                            <!-- options have to be filled dynamically with all avaiable genres -->
+                            <option value="genre1">genre1</option>
+                        </select>
+                    </td>
+                    <td>
+                        <label for="priceField" th:text="#{eventInformation.price} + ':'">price:</label>
+                        <input type="number" name="priceField" id="priceField">
+                    </td>
+                    <td>
+                        <label for="imageField" th:text="#{eventInformation.image} + ':'">image:</label>
+                        <input type="file" name="imageField" id="imageField" accept="image/*">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" name="editEventButton" id="editEventButton" th:text="#{eventInformation.editEventButton}" value="eventEdited">accept changes</button>
+                    </td>
+                </tr>
+            </form>
+        </table>
+        <table id="guestOfEventTable">
+            <tr>
+                <th>
+                    <div th:text="#{eventInformation.guests}">guests</div>
+                </th>
+                <th>
+                    <div th:text="#{eventInformation.seat}">seats</div>
+                </th>
+            </tr>
+        </table>
     </div>
