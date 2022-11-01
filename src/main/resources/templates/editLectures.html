@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+		<meta charset="utf-8">
+
+		<!-- stylesheets -->
+		<link rel="stylesheet" th:href="@{/resources/css/addAndEditLectures.css}">
+		<title th:text="#{welcome.title}">Events</title>
+	</head>
+
+    <!-- back to controllsite button -->
+    <button id="backToControllButton" th:text="#{employee.backButton}">Back to control</button>
+
+    <div id="editWrapper">
+        <form id="editEventInformationForm">
+            <table id="editEventInformationTable">
+                <tr>
+                    <td>
+                        <label for="nameField" th:text="#{eventInformation.name} + ':'">name:</label>
+                        <input type="text" name="nameField" id="nameField">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
